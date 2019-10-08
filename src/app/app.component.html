@@ -1,12 +1,12 @@
 <div class="container">
   <div class="stability-check">
     <h5>Round-1(Stability Check)</h5>
-    <p><u>EPS Growth rate</u></p>
+    <p><u>EPS Growth Consistency</u></p>
     <div>
-      <span><label>Select start date : </label>
+      <span><label>Start date : </label>
       <p-calendar [(ngModel)]="epsStartDate" view="month" dateFormat="mm/yy" [yearNavigator]="true"
                   yearRange="2000:2030"></p-calendar></span>
-      <span><label>Select Finish date : </label>
+      <span><label>Finish date : </label>
      <p-calendar [(ngModel)]="epsFinishDate" view="month" dateFormat="mm/yy" [yearNavigator]="true"
                  yearRange="2000:2030" (onSelect)="onYearSelected()"></p-calendar></span>
     </div>
@@ -28,7 +28,7 @@
     </p-table>
     <button (click)="calculateEpsGrowthRate()">Calculate</button>
     <div>
-      <label *ngIf="epsGrowthRate.length>0"> Growth rate :</label>
+      <label *ngIf="epsGrowthRate.length>0"> Growth percentage :</label>
       <span *ngFor="let growthRage of epsGrowthRate">
         <label class="growthRate-label" [ngClass]="{'negative':growthRage<0}">{{" " + growthRage + '%'}} </label>
       </span>
