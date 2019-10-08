@@ -1,12 +1,37 @@
 <div class="container">
-  <h3>Round-1(Stability Check)</h3>
-  <p><u>EPS Growth rate</u></p>
-  <div>
-    <span><label>Select start date : </label></span>
-    <span><p-calendar [(ngModel)]="epsStartDate" view="month" dateFormat="mm/yy" [yearNavigator]="true"
-                      yearRange="2000:2030"></p-calendar></span>
-    <span><label>Select Finish date : </label></span>
-    <span><p-calendar [(ngModel)]="epsFinishDate" view="month" dateFormat="mm/yy" [yearNavigator]="true"
-                      yearRange="2000:2030" (onSelect)="onYearSelected()"></p-calendar></span>
+  <div class="stability-check">
+    <h5>Round-1(Stability Check)</h5>
+    <p><u>EPS Growth rate</u></p>
+    <div>
+      <span><label>Select start date : </label>
+      <p-calendar [(ngModel)]="epsStartDate" view="month" dateFormat="mm/yy" [yearNavigator]="true"
+                  yearRange="2000:2030"></p-calendar></span>
+      <span><label>Select Finish date : </label>
+     <p-calendar [(ngModel)]="epsFinishDate" view="month" dateFormat="mm/yy" [yearNavigator]="true"
+                 yearRange="2000:2030" (onSelect)="onYearSelected()"></p-calendar></span>
+    </div>
+    <p-table [columns]="stabilityCheckTableColumns" [value]="stabilityCheckTable">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            <input type="text" class="table-input" [(ngModel)]="rowData[col]" required>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <button (click)="calculateEpsGrowthRate()">Calculate</button>
+    <div>
+      <label *ngIf="epsGrowthRate.length>0"> Growth rate :</label>
+      <span *ngFor="let growthRage of epsGrowthRate">
+        <label class="growthRate-label" [ngClass]="{'negative':growthRage<0}">{{" " + growthRage + '%'}} </label>
+      </span>
+    </div>
   </div>
 </div>

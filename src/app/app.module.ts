@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import {CalendarModule} from 'primeng/calendar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TableModule} from 'primeng/table';
+import {InputTextModule} from 'primeng/inputtext';
+import {StockCalculatorService} from './stock-calculator.service';
 
 @NgModule({
   declarations: [
@@ -15,9 +18,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     CalendarModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TableModule,
+    InputTextModule
   ],
-  providers: [],
+  providers: [StockCalculatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
