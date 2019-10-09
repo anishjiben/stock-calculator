@@ -11,9 +11,12 @@ export class AppComponent {
   epsStartDate: Date;
   epsFinishDate: Date;
   fiscalYearAndEps = {};
+
   stabilityCheckTableColumns = [];
   stabilityCheckTable = [];
-  epsGrowthRate: number[] = [];
+
+  epsGrowthPercentages: number[] = [];
+  epsGrowthRate = 0;
 
   constructor(private stockCalclatorService: StockCalculatorService) {
   }
@@ -36,15 +39,24 @@ export class AppComponent {
    * calculate the eps growth using the formulat (present-previous)/previous
    * where present is latest year, and previous is the last year
    */
-  calculateEpsGrowthRate(): void {
-    this.epsGrowthRate = [];
+  calculateEpsGrowthPercentages(): void {
+    this.epsGrowthPercentages = [];
     for (let i = 0; i < this.stabilityCheckTableColumns.length - 1; i++) {
       const presentEps = this.fiscalYearAndEps[this.stabilityCheckTableColumns[i]];
       const previousEps = this.fiscalYearAndEps[this.stabilityCheckTableColumns[i + 1]];
       let growthRate = (presentEps - previousEps) / previousEps;
       growthRate = growthRate * 100;
-      this.epsGrowthRate.push(+growthRate.toFixed(2));
+      this.epsGrowthPercentages.push(+growthRate.toFixed(2));
     }
+    this.calculateEpsGrowthRate();
+  }
+
+  calculateEpsGrowthRate(): void {
+    const lastYearEps = this.fiscalYearAndEps[this.stabilityCheckTableColumns[0]];
+    const baseYearEps = this.fiscalYearAndEps[this.stabilityCheckTableColumns[this.stabilityCheckTableColumns.length - 1]];
+    let growthRate = +(lastYearEps / baseYearEps).toFixed(2);
+    growthRate = Math.pow(growthRate, 1 / this.epsGrowthPercentages.length) - 1;
+    this.epsGrowthRate = +(+growthRate * 100).toFixed(2);
   }
 
 }

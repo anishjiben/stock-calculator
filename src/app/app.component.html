@@ -26,12 +26,15 @@
         </tr>
       </ng-template>
     </p-table>
-    <button (click)="calculateEpsGrowthRate()">Calculate</button>
+    <button (click)="calculateEpsGrowthPercentages()">Calculate</button>
     <div>
-      <label *ngIf="epsGrowthRate.length>0"> Growth percentage :</label>
-      <span *ngFor="let growthRage of epsGrowthRate">
-        <label class="growthRate-label" [ngClass]="{'negative':growthRage<0}">{{" " + growthRage + '%'}} </label>
+      <label *ngIf="epsGrowthPercentages.length>0"> Growth percentage :</label>
+      <span *ngFor="let growthRatePercentage of epsGrowthPercentages">
+        <label class="growthRate-label" [ngClass]="{'negative':growthRatePercentage<0}">{{" " + growthRatePercentage + '%'}} </label>
       </span>
+    </div>
+    <div>
+      <label> EPS-GR(EPS Growth rate) = {{epsGrowthRate}}%</label>
     </div>
   </div>
 </div>
