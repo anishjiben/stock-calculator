@@ -37,4 +37,17 @@
       <label> EPS-GR(EPS Growth rate) = {{epsGrowthRate}}%</label>
     </div>
   </div>
+  <!--Round-2(Calculating P/E ratio)-->
+  <div>
+    <h5>Round-2(Calculating P/E ratio)</h5>
+    <div>
+      <span><label>CMP(Current Market Price) </label>
+      <input type="text" [(ngModel)]="cmp" required></span>
+      <button (click)="calculatePeRation()">Calculate</button>
+      <span *ngIf="peRatio"><label> P/E ratio = {{peRatio}}% </label></span>
+    </div>
+  </div>
+  <div>
+
+  </div>
 </div>

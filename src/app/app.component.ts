@@ -17,6 +17,8 @@ export class AppComponent {
 
   epsGrowthPercentages: number[] = [];
   epsGrowthRate = 0;
+  cmp = 0;
+  peRatio: number;
 
   constructor(private stockCalclatorService: StockCalculatorService) {
   }
@@ -57,6 +59,10 @@ export class AppComponent {
     let growthRate = +(lastYearEps / baseYearEps).toFixed(2);
     growthRate = Math.pow(growthRate, 1 / this.epsGrowthPercentages.length) - 1;
     this.epsGrowthRate = +(+growthRate * 100).toFixed(2);
+  }
+
+  calculatePeRation(): void {
+    this.peRatio = +(this.cmp / this.fiscalYearAndEps[this.stabilityCheckTableColumns[0]]).toFixed(2);
   }
 
 }

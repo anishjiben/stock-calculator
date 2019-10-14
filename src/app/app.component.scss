@@ -1,10 +1,12 @@
 .container {
   margin: 5px;
   padding: 0px;
-.stability-check{
-  padding-bottom: 10px;
-  border-bottom: gray solid 1px;
-}
+
+  .stability-check {
+    padding-bottom: 10px;
+    border-bottom: gray solid 1px;
+  }
+
   .table-input {
     width: 100%;
     border: none;
